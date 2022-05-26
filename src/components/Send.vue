@@ -13,33 +13,23 @@
         </form>
         <div>
             <div class="topo">
-
-                    <h1><a href="https://www.baidu.com" class="Link" v-if="topoVisible">PINPOINT</a></h1>
+                    <a href="http://34.222.223.197:8079" class="Link" target="_blank" v-if="topoVisible"><h1>PINPOINT</h1></a>
                 <div class="log" v-if="topoVisible">
-                
                     <br>
                     <br>
+                    <textarea style="width:235%;height:350px; overflow-x:scroll; overflow-y:scroll" readonly="readonly" >{{this.logText}}</textarea>
                     <br>
                     <br>
-                    <textarea style="width:500px;height:200px;" readonly="readonly">HERE IS LOG</textarea>
-                    <br>
-                    <br>
-                    <br>
-
-                    <textarea style="width:500px;height:200px;" readonly="readonly">HERE IS ISSUE</textarea>
                     <!--                 
                     <iframe :src="src" width="700" height="350" frameborder="1" 
   sandbox="allow-forms allow-scripts allow-same-origin allow-popups" scrolling="auto" style="position:absolute;top: 10px;left: 0px;"></iframe> -->
+                </div >
+                <div class="graph">
+                    <TopologicalGraph v-if="topoVisible" :status="form.traceId" />
                 </div>
-                <TopologicalGraph v-if="topoVisible" :status="form.traceId" />
-                <br>
             </div>
         </div>
-
-        <body v-if="topoVisible">
-            <br />
-            <br />
-            <br />
+        <body v-if="this.adviseText">
             <div class="tableTitle"><span class="midText">
                     <h1>Solution</h1>
                 </span></div>
@@ -56,6 +46,8 @@ import TopologicalGraph from './TopologicalGraph.vue'
 export default {
     data() {
         return {
+            adviseText:false,
+            logText:" .",
             topoVisible: false,
             // src: "../../../../Consent form_副本.pdf",
             src: "www.baidu.com",
@@ -72,11 +64,32 @@ export default {
     methods: {
         submit() {
             this.topoVisible = true
+            if(this.form.traceId=='12345'){
+                console.log("here")
+                this.adviseText=true
+                this.logText = "2022-05-26 12:03:23 [ERROR]([dispatcherServlet]           ) [TxId : backend-server-1^1653533346759^10 , SpanId : -8837425322077286778] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.web.client.ResourceAccessException: I/O error on GET request for \"http://127.0.0.1:8091/getData\": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect] with root cause\n" +
+                "java.net.ConnectException: Connection refused: connect\n" +
+                "        at java.net.DualStackPlainSocketImpl.connect0(Native Method) ~[?:1.8.0_333]\n" +
+                "        at java.net.DualStackPlainSocketImpl.socketConnect(Unknown Source) ~[?:1.8.0_333]\n" +
+                "        at java.net.AbstractPlainSocketImpl.doConnect(Unknown Source) ~[?:1.8.0_333]\n" +
+                "        at java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source) ~[?:1.8.0_333]\n" +
+                "        at java.net.AbstractPlainSocketImpl.connect(Unknown Source) ~[?:1.8.0_333]\n" +
+                "        at java.net.PlainSocketImpl.connect(Unknown Source) ~[?:1.8.0_333]\n" +
+                "        at java.net.SocksSocketImpl.connect(Unknown Source) ~[?:1.8.0_333]\n" +
+                "        at java.net.Socket.connect(Unknown Source) ~[?:1.8.0_333]\n" +
+                "        at java.net.Socket.connect(Unknown Source) ~[?:1.8.0_333]\n"
+            } else {
+                 this.logText="2022-05-26 11:59:12 [INFO ](WebRestController             ) [TxId : backend-server-1^1653533346759^10 , SpanId : 6661803016684038669] Start to handle request in /query...\n" +
+                "2022-05-26 11:59:13 [INFO ](QueryController               ) [TxId : api-server-1^1653535321906^4 , SpanId : 3152941307172736455] Start to handle request in /getData...\n" +
+                "2022-05-26 11:59:13 [INFO ](QueryService                  ) [TxId : api-server-1^1653535321906^4 , SpanId : 3152941307172736455] Start to query...\n" +
+                "2022-05-26 11:59:15 [INFO ](QueryController               ) [TxId : api-server-1^1653535321906^4 , SpanId : 3152941307172736455] End of handle request in /getInternData...\n" +
+                "2022-05-26 11:59:15 [INFO ](WebRestController             ) [TxId : backend-server-1^1653533346759^10 , SpanId : 6661803016684038669] HTTP status code from backapi: 200\n" +
+                "2022-05-26 11:59:15 [INFO ](WebRestController             ) [TxId : backend-server-1^1653533346759^10 , SpanId : 6661803016684038669] End of handle request in /query..."
+            }
             // let formData = new FormData()
             // for (var key in this.form) {
             //     formData.append(key, form[key])
             // }
-            console.log(form.traceId.value == "123")
             // // eslint-disable-next-line no-unused-expressions
             // this.$http.post('/api/v1/speakers',
             //     {
@@ -92,6 +105,7 @@ export default {
 
         clear() {
             this.topoVisible = false
+                this.adviseText=false
         }
     }
 }
@@ -108,7 +122,7 @@ export default {
 .tableTitle {
     position: relative;
     margin: 0 auto;
-    width: 1500px;
+    width: 1400px;
     height: 1px;
     background-color: #0b0a0a;
     text-align: center;
@@ -118,7 +132,8 @@ export default {
 
 .midText {
     position: absolute;
-    left: 50%;
+    // left: 50%;
+    right: 50%;
     // background-color: #f2f4f7;
     background-color: #ffffff;
     padding: 0 15px;
@@ -131,14 +146,21 @@ export default {
     width: 200px;
     height: 200px;
     position: absolute;
-    right: 30%;
+    right: 20%;
     margin-top: 10px;
 
 }
 
+
+.graph {
+    position: relative;
+    padding-top: -10%;  
+    // bottom: -50px;
+}
+
 .Link {
     position: relative;
-    right: -10%;
+    right: -15%;
     // margin-top: 100px;
     font-size: 50;
     bottom: -50px;

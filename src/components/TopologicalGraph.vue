@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="TopologicalGraph">
-            <div style="height:100%" ref="graphchart">
+            <div style="top: -5vh; height:100%;width: 100%;" ref="graphchart">
             </div>
         </div>
     </div>
@@ -19,55 +19,55 @@ export default {
             echart: null,
             nodes: [
                 {
-                    name: 'QS',
-                    value: [0, 0],
+                    name: 'Backend-Server',
+                    value: [0.2, 0],
                     symbol: 'circle',
-                    symbolSize: 100,
-                    category: 2,
+                    symbolSize: 50,
+                    category:  0,
                     alarmShow: 1,
-                    optStatus: 1,
+                    optStatus: 10,
                     adminStatus: 1,
                     alarmDetail: {
-                        critical: 0,
+                        critical: 1,
                         major: 1,
                         minor: 1,
                         warning: 1
                     },
-                    symbol: "image://" + require('@/assets/TOMCAT.png'),
+                    symbol: "image://" + require('@/assets/SPRING_BOOT.png'),
                     itemStyle: {
                         color: 'red'
                     }
                 },
                 {
-                    name: 'DS',
-                    value: [1, 90],
-                    symbolSize: 100,
+                    name: 'Hackson',
+                    value: [1, 40],
+                    symbolSize: 50,
                     // symbol: 'circle'
-                    symbol: "image://" + require('@/assets/TOMCAT.png')
+                    symbol: "image://" + require('@/assets/MYSQL.png')
                 },
                 {
-                    name: 'TS',
-                    value: [1, 120],
-                    symbolSize: 100,
-                    symbol: "image://" + require('@/assets/TOMCAT.png'),
+                    name: 'Redis',
+                    value: [1, 70],
+                    symbolSize: 50,
+                    symbol: "image://" + require('@/assets/REDIS.png'),
                 },
                 {
-                    name: 'HQS',
-                    value: [0.75, 180],
-                    symbolSize: 100,
-                    symbol: "image://" + require('@/assets/TOMCAT.png'),
+                    name: 'Server',
+                    value: [0.9, 100],
+                    symbolSize: 50,
+                    symbol: "image://" + require('@/assets/UNKNOWN.png'),
                 },
                 {
-                    name: 'Sybase',
-                    value: [1, 240],
-                    symbolSize: 100,
-                    symbol: "image://" + require('@/assets/HBASE_CLIENT.png'),
+                    name: 'APIServer',
+                    value: [0.8, 130],
+                    symbolSize: 50,
+                    symbol: "image://" + require('@/assets/SPRING_BOOT.png'),
                 },
                 {
-                    name: 'Gemfire',
-                    value: [1, 300],
-                    symbolSize: 80,
-                    symbol: "image://" + require('@/assets/gimfire.webp'),
+                    name: 'User',
+                    value: [0.8, -75],
+                    symbolSize: 50,
+                    symbol: "image://" + require('@/assets/USER.png'),
                 }
             ],
             // links: [
@@ -207,7 +207,7 @@ export default {
     components: {
     },
     mounted() {
-        if (this.status == '123') {
+        if (this.status == '12345') {
             this.warnStatus = 'red'
             this.title = 'STATUS:AMBER'
         } else {
@@ -215,6 +215,7 @@ export default {
             this.title = 'STATUS:NORNAL'
         }
         this.drawChart()
+        console.log(this.warnStatus)
     },
     methods: {
         drawChart() {
@@ -233,10 +234,10 @@ export default {
                     // rel="noopener">Pinpoint</a></li>,
 
 
-                    // x: 'left',
-                    // y: 'head',
-                    x: 200,
-                    y: 100,
+                    x: 150,
+                    y: 'head',
+                    // x: 200,
+                    // y: 100,
                     borderWidth: 0, // 标题边框线宽，单位px，默认为0（无边框）
                     padding: 0, // 标题内边距，单位px，默认各方向内边距为5，接受数组分别设定上右下左边距
                     itemGap: -10, // 主副标题纵向间隔，单位px，默认为10
@@ -288,8 +289,8 @@ export default {
                         nodes: this.nodes,
                         links: [
                             {
-                                source: 'QS',
-                                target: 'Gemfire',
+                                source: 'User',
+                                target: 'Backend-Server',
                                 symbol: ['none', 'arrow'],
                                 label: {
                                     show: true,
@@ -304,8 +305,8 @@ export default {
                                 }
                             },
                             {
-                                source: 'Gemfire',
-                                target: 'Sybase',
+                                source: 'Backend-Server',
+                                target: 'Hackson',
                                 symbol: ['none', 'arrow'],
                                 label: {
                                     show: true,
@@ -320,8 +321,8 @@ export default {
                                 }
                             },
                             {
-                                source: 'HQS',
-                                target: 'QS',
+                                source: 'Backend-Server',
+                                target: 'Redis',
                                 symbol: ['none', 'arrow'],
                                 label: {
                                     show: true,
@@ -336,8 +337,8 @@ export default {
                                 }
                             },
                             {
-                                source: 'DS',
-                                target: 'QS',
+                                source: 'Backend-Server',
+                                target: 'Server',
                                 symbol: ['none', 'arrow'],
                                 label: {
                                     show: true,
@@ -352,8 +353,8 @@ export default {
                                 }
                             },
                             {
-                                source: 'TS',
-                                target: 'QS',
+                                source: 'Backend-Server',
+                                target: 'APIServer',
                                 symbol: ['none', 'arrow'],
                                 label: {
                                     show: true,
@@ -392,8 +393,8 @@ export default {
                         lineStyle: {//连接线
                             normal: {
                                 color: '#1DE9B6',
-                                width: 3, // 线条宽度
-                                opacity: 0.1, // 尾迹线条透明度
+                                width: 10, // 线条宽度
+                                opacity: 0.9, // 尾迹线条透明度
                                 curveness: 0.3 // 尾迹线条曲直度
                             }
                         },
@@ -411,12 +412,11 @@ export default {
 <style scoped>
 .TopologicalGraph {
     width: 50%;
-    height: 50vh;
+    height: 70vh;
     font-family: "Avenir", Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     color: #2c3e50;
 }
-
 </style>
