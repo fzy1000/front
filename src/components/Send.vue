@@ -13,7 +13,7 @@
         </form>
         <div>
             <div class="topo">
-                    <a href="http://34.222.223.197:8079" class="Link" target="_blank" v-if="topoVisible"><h1>PINPOINT</h1></a>
+                    <a href="http://34.222.223.197:8079/filteredMap/frontend-server@SPRING_BOOT/1h/2022-05-26-14-18-31?filter=%5B%7B%22fa%22:null,%22fst%22:null,%22ta%22:null,%22tst%22:null,%22a%22:%22frontend-server%22,%22st%22:%22SPRING_BOOT%22,%22ie%22:null,%22rf%22:0,%22rt%22:%22max%22,%22an%22:%22frontend-server-1%22%7D%5D&hint=%7B%7D" class="Link" target="_blank" v-if="topoVisible"><h1>PINPOINT</h1></a>
                 <div class="log" v-if="topoVisible">
                     <br>
                     <br>
