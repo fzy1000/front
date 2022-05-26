@@ -214,7 +214,7 @@ export default {
     components: {
     },
     mounted() {
-        if (this.status == '12345') {
+        if (this.status == 'frontend-server-1^1653544029080^12') {
             this.warnStatus = 'red'
             this.title = 'STATUS:AMBER'
         } else {

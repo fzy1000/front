@@ -68,7 +68,7 @@ export default {
     methods: {
         submit() {
             this.topoVisible = true
-            if(this.form.traceId=='12345'){
+            if(this.form.traceId=='frontend-server-1^1653544029080^12'){
                 console.log("here")
                 this.adviseText=true
                 this.logText = "2022-05-26 12:03:23 [ERROR]([dispatcherServlet]           ) [TxId : backend-server-1^1653533346759^10 , SpanId : -8837425322077286778] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.web.client.ResourceAccessException: I/O error on GET request for \"http://127.0.0.1:8091/getData\": Connection refused: connect; nested exception is java.net.ConnectException: Connection refused: connect] with root cause\n" +
