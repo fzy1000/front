@@ -35,7 +35,11 @@
                 </span></div>
             <br />
             <br />
-            <h2>Please restart your server</h2>
+            <div class="advice">
+            <h2>ISSUE: Connection refused: connect</h2>
+            <h2>SOLUTION: Please Restart Backend-Server </h2>
+            <h2>Please Contact Wih Server Administartor Allen Feng</h2>
+            </div>
         </body>
     </div>
 </template>
@@ -122,7 +126,7 @@ export default {
 .tableTitle {
     position: relative;
     margin: 0 auto;
-    width: 1400px;
+    width: 1500px;
     height: 1px;
     background-color: #0b0a0a;
     text-align: center;
@@ -164,5 +168,11 @@ export default {
     // margin-top: 100px;
     font-size: 50;
     bottom: -50px;
+}
+
+.advice {
+    padding-left: 30%;
+    text-align: left;
+    font-style:oblique
 }
 </style>

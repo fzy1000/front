@@ -40,7 +40,7 @@ export default {
                 },
                 {
                     name: 'Front-End',
-                    value: [0.4, -30],
+                    value: [0.45, -40],
                     symbolSize: 50,
                     // symbol: 'circle'
                     symbol: "image://" + require('@/assets/SPRING_BOOT.png')
@@ -66,13 +66,13 @@ export default {
                 },
                 {
                     name: 'APIServer',
-                    value: [0.2, -120],
+                    value: [0.2, -150],
                     symbolSize: 50,
                     symbol: "image://" + require('@/assets/SPRING_BOOT.png'),
                 },
                 {
                     name: 'User',
-                    value: [0.8, -75],
+                    value: [1, -40],
                     symbolSize: 50,
                     symbol: "image://" + require('@/assets/USER.png'),
                 }
