@@ -20,7 +20,7 @@ export default {
             nodes: [
                 {
                     name: 'Backend-Server',
-                    value: [0.2, 0],
+                    value: [0.5, 50],
                     symbol: 'circle',
                     symbolSize: 50,
                     category:  0,
@@ -37,6 +37,13 @@ export default {
                     itemStyle: {
                         color: 'red'
                     }
+                },
+                {
+                    name: 'Front-End',
+                    value: [0.4, -30],
+                    symbolSize: 50,
+                    // symbol: 'circle'
+                    symbol: "image://" + require('@/assets/SPRING_BOOT.png')
                 },
                 {
                     name: 'Hackson',
@@ -59,7 +66,7 @@ export default {
                 },
                 {
                     name: 'APIServer',
-                    value: [0.8, 130],
+                    value: [0.2, -120],
                     symbolSize: 50,
                     symbol: "image://" + require('@/assets/SPRING_BOOT.png'),
                 },
@@ -290,6 +297,22 @@ export default {
                         links: [
                             {
                                 source: 'User',
+                                target: 'Front-End',
+                                symbol: ['none', 'arrow'],
+                                label: {
+                                    show: true,
+                                    // formatter: '×',
+                                    formatter: '',
+                                    padding: [0, 2, -13, 0],
+                                    fontSize: 20
+                                },
+                                lineStyle: {
+                                    color: this.warnStatus,
+                                    curveness: 0
+                                }
+                            },
+                            {
+                                source: 'Front-End',
                                 target: 'Backend-Server',
                                 symbol: ['none', 'arrow'],
                                 label: {
@@ -304,6 +327,8 @@ export default {
                                     curveness: 0
                                 }
                             },
+                            
+                            
                             {
                                 source: 'Backend-Server',
                                 target: 'Hackson',
@@ -337,7 +362,7 @@ export default {
                                 }
                             },
                             {
-                                source: 'Backend-Server',
+                                source: 'APIServer',
                                 target: 'Server',
                                 symbol: ['none', 'arrow'],
                                 label: {
@@ -353,7 +378,23 @@ export default {
                                 }
                             },
                             {
-                                source: 'Backend-Server',
+                                source: 'APIServer',
+                                target: 'Backend-Server',
+                                symbol: ['none', 'arrow'],
+                                label: {
+                                    show: true,
+                                    // formatter: '×',
+                                    formatter: '',
+                                    padding: [0, 2, -13, 0],
+                                    fontSize: 20
+                                },
+                                lineStyle: {
+                                    color: 'green',
+                                    curveness: 0
+                                }
+                            },
+                            {
+                                source: 'Front-End',
                                 target: 'APIServer',
                                 symbol: ['none', 'arrow'],
                                 label: {
